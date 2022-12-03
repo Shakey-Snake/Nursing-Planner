@@ -1,0 +1,42 @@
+﻿@page
+@using Nursing_Planner.Models
+@model Nursing_Planner.Pages.PatientModel
+@{
+    ViewData["Title"] = "Timetable";
+}
+
+<h1>Time table</h1>
+<table class="table mt-1">
+    <thead>
+        <tr>
+            <th scope="col">Time</th>
+            @foreach (var patient in Model.patients)
+            {
+                <th scope="col">@(patient.RoomNumber)</th>
+            }
+        </tr>
+    </thead>
+    @* For each time slot, set the patient *@
+    @{var interval = 15;}
+    @for (DateTime i = DateTime.Parse("08:00"); i < DateTime.Parse("15:00").AddMinutes(interval); i = i.AddMinutes(interval))
+    {
+        <tr>
+            <td>@i.ToString("HH:mm")</td>
+            @foreach (var patient in Model.patients)
+            {
+                <td>
+                    @if (patient.Task.ContainsKey(i))
+                    {
+                        @("|")
+                        @foreach (var task in patient.Task[i])
+                        {
+                            <a>@(task + " ")</a>
+                            @("|")
+                        }
+                    }
+                </td>
+            }
+        </tr>
+    }
+    
+</table>

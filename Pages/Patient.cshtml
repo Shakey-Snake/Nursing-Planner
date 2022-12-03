@@ -1,0 +1,60 @@
+﻿@page
+@using Nursing_Planner.Models
+@model Nursing_Planner.Pages.PatientModel
+@using System.Linq;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-row">
+        @foreach (var patient in Model.patients )
+        { 
+        <li class="nav-item">
+            <form method="post">
+                @* Use services to do *@
+                <input type="hidden" asp-for="@Model.CurrentPatient" value="@patient.RoomNumber">
+                <input class="no-border" type="submit" value="@patient.RoomNumber">
+            </form>
+        </li>
+        }
+    </ul>
+</div>
+
+@{
+    var interval = 15;
+}
+
+<h1>Time table for @(Model.CurrentPatient.RoomNumber)</h1>
+<table class="table mt-1">
+    <thead>
+        <tr>
+            <th scope="col">Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    @* For each time slot, set the patient *@
+    @for (DateTime i = DateTime.Parse("08:00"); i < DateTime.Parse("15:00").AddMinutes(interval); i = i.AddMinutes(interval))
+    {
+        <tr>
+            <td>@i.ToString("HH:mm")</td>
+                <td>
+                @if (Model.CurrentPatient.Task.ContainsKey(i))
+                {
+                    @("|")
+                    @foreach (var task in Model.CurrentPatient.Task[i])
+                    {
+                        <a>@(task + " ")</a>
+                        @("|")
+                    }
+                }
+            </td>
+        </tr>
+    }
+    
+</table>
+
+
+
+
+
