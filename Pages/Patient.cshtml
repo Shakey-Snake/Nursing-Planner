@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Drawing;
 @using Nursing_Planner.Models
 @model Nursing_Planner.Pages.PatientModel
 @using System.Linq;
@@ -11,21 +12,33 @@
         @foreach (var patient in Model.patients )
         { 
         <li class="nav-item">
-            <form method="post">
-                @* Use services to do *@
-                <input type="hidden" asp-for="@Model.CurrentPatient" value="@patient.RoomNumber">
-                <input class="no-border" type="submit" value="@patient.RoomNumber">
+            @* asp-page-handler defines the function that will handle the post.
+            asp-route-curr defines the variables and their corresponding name that will be sent to the function *@
+            <form method="post" asp-page-handler="ChangePage" asp-route-curr="@patient.RoomNumber">
+                <button class="btn">@patient.RoomNumber</button>
             </form>
         </li>
         }
     </ul>
 </div>
 
-@{
-    var interval = 15;
-}
-
 <h1>Time table for @(Model.CurrentPatient.RoomNumber)</h1>
+
+<form method="post" asp-page-handler="AddPatientTask" asp-route-curr="@Model.CurrentPatient.RoomNumber" class="card p-3">
+    <div class="row">
+        <div asp-validation-summary="All"></div>
+    </div>
+    <div class="form-group mb-0 align-middle">
+        <label>Time</label>
+        <select name="time" asp-items="@(new SelectList(Model.displayTimesList))" class="mr-5"></select>
+        <label>Task</label>
+        <select name="task" asp-items="@(new SelectList(Model.taskList))" class="mr-5"></select>
+        <label>Interval</label>
+        <select name="interval" asp-items="@(new SelectList(Model.intervalList))" class="mr-5"></select>
+        <button class="btn btn-primary">Add</button>
+    </div>
+</form>
+
 <table class="table mt-1">
     <thead>
         <tr>
@@ -34,18 +47,24 @@
         </tr>
     </thead>
     @* For each time slot, set the patient *@
-    @for (DateTime i = DateTime.Parse("08:00"); i < DateTime.Parse("15:00").AddMinutes(interval); i = i.AddMinutes(interval))
+    @foreach (var time in Model.timesList)
     {
         <tr>
-            <td>@i.ToString("HH:mm")</td>
+            <td>@time.ToString("HH:mm")</td>
                 <td>
-                @if (Model.CurrentPatient.Task.ContainsKey(i))
+                @if (Model.CurrentPatient.Task.ContainsKey(time))
                 {
-                    @("|")
-                    @foreach (var task in Model.CurrentPatient.Task[i])
+                    string colour = "none";
+                    @foreach (var task in Model.CurrentPatient.Task[time])
                     {
-                        <a>@(task + " ")</a>
-                        @("|")
+                        foreach (var x in Model.tasks) 
+                        {
+                            if(x.Key == task)
+                            {
+                                colour = x.Value;
+                            }
+                        }
+                        <a><div class="colour-square" style='background-color: @(colour)'></div>@(task)</a>
                     }
                 }
             </td>
@@ -53,6 +72,10 @@
     }
     
 </table>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
 
 
 

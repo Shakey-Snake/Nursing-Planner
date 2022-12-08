@@ -17,7 +17,7 @@ public static class PatientService
                             {
                                 DateTime.Parse("08:00"), 
                                 new() {
-                                    "obs", "blood"
+                                    "obs", "blood test"
                                 }
                             }
                         }
@@ -27,13 +27,13 @@ public static class PatientService
                             {
                                 DateTime.Parse("09:00"), 
                                 new() {
-                                    "check", "blood"
+                                    "obs", "blood test"
                                 }
                             },
                             {
                                 DateTime.Parse("10:00"), 
                                 new() {
-                                    "check"
+                                    "obs"
                                 }
                             }
                         }
@@ -44,6 +44,7 @@ public static class PatientService
     public static List<Patient> GetAll() => Patients;
 
     public static Patient? Get(int id) => Patients.FirstOrDefault(p => p.Id == id);
+    public static Patient? Get(string roomNumber) => Patients.FirstOrDefault(p => p.RoomNumber == roomNumber);
 
     public static void Add(Patient patient)
     {
@@ -67,5 +68,31 @@ public static class PatientService
             return;
 
         Patients[index] = patient;
+    }
+
+    public static void AddPatientTask(string curr, string time, string task, int interval)
+    {
+        var currentPatient = Get(curr);
+        if (!currentPatient.Task.ContainsKey(DateTime.Parse(time))){
+            currentPatient.Task.Add(DateTime.Parse(time), new() {task});
+        }
+        else{
+            if (!currentPatient.Task[DateTime.Parse(time)].Contains(task)){
+                currentPatient.Task[DateTime.Parse(time)].Add(task);
+            }
+            
+        }
+        if (interval != 0){
+            for (DateTime i = DateTime.Parse(time).AddMinutes(interval); i < SettingsService.GetEndTime().AddMinutes(interval); i = i.AddMinutes(interval)){
+                if (!currentPatient.Task.ContainsKey(i)){
+                    currentPatient.Task.Add(i, new() {task});
+                }
+                else{
+                    if (!currentPatient.Task[DateTime.Parse(time)].Contains(task)){
+                        currentPatient.Task[i].Add(task);
+                    }
+                }
+            }
+        }
     }
 }

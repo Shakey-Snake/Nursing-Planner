@@ -23,3 +23,14 @@ body {
   padding-right: 10px;
   background-color: transparent;
 }
+
+.colour-square {
+  display: inline-block; 
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  width: 13px; 
+  height: 13px; 
+}

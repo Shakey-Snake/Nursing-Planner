@@ -17,23 +17,28 @@
         </tr>
     </thead>
     @* For each time slot, set the patient *@
-    @{var interval = 15;}
-    @for (DateTime i = DateTime.Parse("08:00"); i < DateTime.Parse("15:00").AddMinutes(interval); i = i.AddMinutes(interval))
+    @foreach (var time in Model.timesList)
     {
         <tr>
-            <td>@i.ToString("HH:mm")</td>
+            <td>@time.ToString("HH:mm")</td>
             @foreach (var patient in Model.patients)
             {
                 <td>
-                    @if (patient.Task.ContainsKey(i))
+                @if (patient.Task.ContainsKey(time))
+                {
+                    string colour = "none";
+                    @foreach (var task in patient.Task[time])
                     {
-                        @("|")
-                        @foreach (var task in patient.Task[i])
+                        foreach (var x in Model.tasks) 
                         {
-                            <a>@(task + " ")</a>
-                            @("|")
+                            if(x.Key == task)
+                            {
+                                colour = x.Value;
+                            }
                         }
+                        <a><div class="colour-square" style='background-color: @(colour)'></div>@(task)</a>
                     }
+                }
                 </td>
             }
         </tr>
