@@ -25,9 +25,6 @@
 <h1>Time table for @(Model.CurrentPatient.RoomNumber)</h1>
 
 <form method="post" asp-page-handler="AddPatientTask" asp-route-curr="@Model.CurrentPatient.RoomNumber" class="card p-3">
-    <div class="row">
-        <div asp-validation-summary="All"></div>
-    </div>
     <div class="form-group mb-0 align-middle">
         <label>Time</label>
         <select name="time" asp-items="@(new SelectList(Model.displayTimesList))" class="mr-5"></select>

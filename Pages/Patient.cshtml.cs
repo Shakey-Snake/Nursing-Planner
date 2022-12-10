@@ -10,8 +10,10 @@ namespace Nursing_Planner.Pages
     public class PatientModel : PageModel
     {
         public List<Patient> patients = new();
+
+        //0 references but when removed the app no longer works
         [BindProperty]
-        public Patient NewPatient { get; set; } = new();
+        public Patient NewPatient { get; set; } = new Patient();
 
         [BindProperty]
         public Patient CurrentPatient { get; set; }
@@ -20,11 +22,11 @@ namespace Nursing_Planner.Pages
 
         public List<string> displayTimesList { get; set; } = new();
 
-        public List<string> taskList {get; set;} = new List<string>();
+        public List<string> taskList { get; set; } = new List<string>();
 
-        public List<int> intervalList {get; set;} = new List<int>(); 
+        public List<int> intervalList { get; set; } = new List<int>();
 
-        public Dictionary<string, string> tasks {get; set;} = new Dictionary<string, string>(); 
+        public Dictionary<string, string> tasks { get; set; } = new Dictionary<string, string>();
 
         public DateTime time { get; set; }
 

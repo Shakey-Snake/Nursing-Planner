@@ -6,7 +6,7 @@ namespace Nursing_Planner.Models;
 
 public class Settings
 {
-    public List<int> intervals = new List<int> { 0, 5, 10, 15, 20, 30, 60};
+    public List<int> intervals = new List<int> { 0, 5, 10, 15, 20, 30, 60 };
 
     public DateTime _startTime { get; set; }
 
@@ -18,22 +18,23 @@ public class Settings
 
     public Patient? currentPatient { get; set; }
 
-    public List<DateTime> times { get; } = new List<DateTime>();
+    public List<DateTime> times { get; set; } = new List<DateTime>();
 
     public Dictionary<string, string> tasks;
 
-    public Settings (DateTime startTime, DateTime endTime, int interval )
+    public Settings(DateTime startTime, DateTime endTime, int interval)
     {
-       _startTime = startTime;
-       _endTime = endTime;
-       _interval = interval;
+        _startTime = startTime;
+        _endTime = endTime;
+        _interval = interval;
 
-       for (DateTime i = startTime; i < endTime.AddMinutes(interval); i = i.AddMinutes(interval)){
+        for (DateTime i = _startTime; i < _endTime.AddMinutes(_interval); i = i.AddMinutes(_interval))
+        {
             times.Add(i);
-       }
+        }
 
-       tasks = new Dictionary<string, string>
-       {
+        tasks = new Dictionary<string, string>
+        {
             {"obs", "blue"},
             {"blood test", "red"},
             {"blood pressure", "orange"},
@@ -41,15 +42,29 @@ public class Settings
        };
     }
 
-    public void ChangeTimes(DateTime startTime, DateTime endTime, int interval )
+    public void ChangeTimes(DateTime startTime, DateTime endTime, int interval)
     {
-       _startTime = startTime;
-       _endTime = endTime;
-       _interval = interval;
+        _startTime = startTime;
+        if (endTime < startTime)
+        {
+            _endTime = endTime.AddDays(1);
+        }
+        else
+        {
+            _endTime = endTime;
+        }
+        _interval = interval;
 
-       for (DateTime i = startTime; i < endTime.AddMinutes(interval); i.AddMinutes(interval)){
+        times = new List<DateTime>();
+
+
+
+        for (DateTime i = _startTime; i < _endTime.AddMinutes(_interval); i = i.AddMinutes(_interval))
+        {
             times.Add(i);
-       }
+        }
+
+
     }
 }
 

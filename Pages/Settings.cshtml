@@ -2,3 +2,81 @@
 @model Nursing_Planner.Pages.SettingsModel
 @{
 }
+<form method="post" asp-page-handler="ChangeSettings">
+    <div class="form-group test1 mb-0">
+        <div style="display:block">
+            <label for="start">Start Time</label>
+            <select name="start" asp-items="@(new SelectList(Model.displayTimesList))"></select>
+        </div>
+        <div style="display:block">
+            <label for="end">End Time</label>
+            <select name="end" asp-items="@(new SelectList(Model.displayTimesList))"></select>
+        </div>
+        <div style="display:block">
+            <label for="interval">Interval</label>
+            <select name="interval" asp-items="@(new SelectList(Model.intervalList))"></select>
+        </div>
+        <div style="display:block">
+            <label for="patients">Number Of Patients</label>
+            <select name="patients" id="numPatients" onchange="myFunction()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </div>
+        <div id="patients">
+        </div>
+        <button class="btn btn-primary">Apply</button>
+    </div>
+</form>
+
+<div>
+    <form method="post" asp-page-handler="ResetSettingsToDefault">
+        <button>Reset</button>
+    </form>
+</div>
+
+<script>
+    function myFunction() {
+        // Get the value of the selected option
+        var selectedValue = document.getElementById("numPatients").value;
+
+        // Clear the existing content of the myDiv element
+        document.getElementById("patients").innerHTML = "";
+
+        var newHidden = document.createElement("input")
+        newHidden.setAttribute("type", "hidden");
+        newHidden.setAttribute("value", selectedValue);
+        document.getElementById("patients").appendChild(newHidden);
+
+        // Create the specified number of div elements
+        for (var i = 0; i < selectedValue; i++) {
+            // Create a new div element
+            var newDiv = document.createElement("div");
+
+            // Create a label element
+            var newLabel = document.createElement("label");
+            newLabel.innerHTML = "Patient " + (i + 1) + " Name";
+            newHidden.setAttribute("for", "patient");
+
+            // Create a textarea element
+            var newInput = document.createElement("input");
+            newInput.setAttribute("type", "text");
+            newInput.setAttribute("name", "patient");
+
+            // Add the label and textarea elements to the new div element
+            newDiv.appendChild(newLabel);
+            newDiv.appendChild(newInput);
+
+            // Add the new div element to the page
+            document.getElementById("patients").appendChild(newDiv);
+        }
+    }
+</script>
