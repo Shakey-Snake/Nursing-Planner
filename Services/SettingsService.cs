@@ -24,6 +24,7 @@ public static class SettingsService
     public static List<DateTime> GetAllTimes() => settings.times;
 
     public static List<string> GetAllTasks() => new List<string>(settings.tasks.Keys);
+    public static Dictionary<string, string> GetAllTaskColours() => settings.tasks;
 
     public static List<int> GetLinkedIntervals() => settings.intervals;
 
@@ -50,6 +51,8 @@ public static class SettingsService
     {
         settings.ChangeTimes(DateTime.Parse(start), DateTime.Parse(end), interval);
     }
+
+
 
 
 

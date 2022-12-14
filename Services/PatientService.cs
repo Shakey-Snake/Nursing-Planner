@@ -4,7 +4,6 @@ namespace Nursing_Planner.Services;
 public static class PatientService
 {
     static List<Patient> Patients { get; set; }
-    static int nextId = 3;
 
     static PatientService()
     {
@@ -15,7 +14,7 @@ public static class PatientService
                         {
                             DateTime.Parse("08:00"), new()
                             {
-                                "obs", "blood test"
+                                "OBS", "Bloods"
                             }
                         }
                     }),
@@ -24,13 +23,13 @@ public static class PatientService
                         {
                             DateTime.Parse("09:00"), new()
                             {
-                                "obs", "blood test"
+                                "OBS", "Bloods"
                             }
                         },
                         {
                             DateTime.Parse("10:00"),new()
                             {
-                                "obs"
+                                "PCA"
                             }
                         }
                     })
@@ -44,7 +43,14 @@ public static class PatientService
 
     public static void Add(Patient patient)
     {
-        patient.Id = nextId++;
+        if (Patients.Count == 0)
+        {
+            patient.Id = 0;
+        }
+        else
+        {
+            patient.Id = Patients[Patients.Count - 1].Id++;
+        }
         Patients.Add(patient);
     }
 

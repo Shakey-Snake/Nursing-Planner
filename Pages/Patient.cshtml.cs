@@ -44,7 +44,22 @@ namespace Nursing_Planner.Pages
             tasks = SettingsService.GetTasksColors();
             if (CurrentPatient == null)
             {
-                CurrentPatient = patients[0];
+                if (patients.Count == 0)
+                {
+                    //might create some issues, multiple patients being created.
+                    //if no GC, could cause memory OF
+                    //other solutions are: 
+                    //1. creating a blank patient above and reusing that
+                    //more complex that could reduce code:
+                    //2. having a patient with an id of -1 in the list, do not remove from the list
+                    //this can use the code in the else statement and might reduce code elsewhere
+                    CurrentPatient = new Patient(-1, "None");
+                }
+                else
+                {
+                    CurrentPatient = patients[0];
+                }
+
             }
 
             foreach (var time in timesList)

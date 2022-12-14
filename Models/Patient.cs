@@ -5,6 +5,7 @@ namespace Nursing_Planner.Models;
 
 public class Patient
 {
+
     public int Id { get; set; }
 
     [Required]
@@ -22,4 +23,17 @@ public class Patient
     }
 
     public Patient() { }
+
+    public Patient(string roomNumber)
+    {
+        RoomNumber = roomNumber;
+        Task = new Dictionary<DateTime, List<string>>();
+    }
+
+    public Patient(int id, string roomNumber)
+    {
+        Id = id;
+        RoomNumber = roomNumber;
+        Task = new Dictionary<DateTime, List<string>>();
+    }
 }

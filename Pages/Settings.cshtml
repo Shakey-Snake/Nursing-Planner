@@ -31,19 +31,101 @@
                 <option value="9">9</option>
             </select>
         </div>
-        <div id="patients">
-        </div>
         <button class="btn btn-primary">Apply</button>
     </div>
 </form>
 
+@* Add or remove specific patients *@
 <div>
-    <form method="post" asp-page-handler="ResetSettingsToDefault">
-        <button>Reset</button>
-    </form>
+    <div style="display:block">
+        <form method="post" asp-page-handler="AddPatient">
+            <label for="roomNumber">Patient Room Number</label>
+            <input type="text" name="roomNumber">
+            <button class="btn btn-primary">Add</button>
+        </form>
+    </div>
+    <table class="table mt-5">
+        @foreach (var patient in Model.patientList)
+        {
+            <tr>
+                <td>@(patient.RoomNumber)</td>
+                <td>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@patient.Id">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@* Add remove or change colours of task types *@
+<div>
+    <div style="display:block">
+        <form method="post" asp-page-handler="AddTaskToList">
+            <label for="task">Task Name</label>
+            <input type="text" name="task">
+            <label for="colour">Colour</label>
+            <input type="color" name="colour" value="#ffffff">
+            <button class="btn btn-primary">Add</button>
+        </form>
+    </div>
+    <table class="table mt-5">
+        @* Could use a for loop to display multiple in a row *@
+        @foreach (var task in Model.taskList)
+        {
+            <tr>
+                <td>
+                    <input type="color" name="colour" value="@(task.Value)" style="display: inline">
+                    <div class="change" style="display: inline">
+                        <div id="displayDiv" style="display: inline">
+                            <p style="display: inline">@(task.Key)</p>
+                            <button id="change" style="display: inline" class="btn btn-primary">Change</button>
+                        </div>
+                        <div id="changeDiv" style="display:none">
+                            <form method="post" asp-page-handler="ChangeTask" asp-route-id="@task.Key">
+                                <input value="@(task.Key)" style="display: inline">
+                                <button class="btn btn-primary">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                <td>
+
+
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="DeleteTask" asp-route-id="@task.Key">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
 </div>
 
 <script>
+    const divs = document.querySelectorAll('.change');
+
+    for (let i = 0; i < divs.length; i++) {
+        const ChangeButton = divs[i].querySelector('#change');
+        console.log(ChangeButton);
+        ChangeButton.addEventListener('click', function () {
+            const display = divs[i].querySelector('#displayDiv');
+            const change = divs[i].querySelector('#changeDiv');
+            console.log("switch")
+            if (display.style.display === 'inline') {
+                display.style.display = 'none';
+                change.style.display = 'inline';
+
+            } else {
+                display.style.display = 'inline';
+                change.style.display = 'none';
+                console.log("switch")
+            }
+        });
+    }
+
     function myFunction() {
         // Get the value of the selected option
         var selectedValue = document.getElementById("numPatients").value;

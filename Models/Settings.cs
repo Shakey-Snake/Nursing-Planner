@@ -6,7 +6,7 @@ namespace Nursing_Planner.Models;
 
 public class Settings
 {
-    public List<int> intervals = new List<int> { 0, 5, 10, 15, 20, 30, 60 };
+    public List<int> intervals = new List<int> { 0, 5, 10, 15, 20, 30, 60, 90, 120, 240 };
 
     public DateTime _startTime { get; set; }
 
@@ -35,10 +35,15 @@ public class Settings
 
         tasks = new Dictionary<string, string>
         {
-            {"obs", "blue"},
-            {"blood test", "red"},
-            {"blood pressure", "orange"},
-            {"other", "black"}
+            {"OBS", "blue"},
+            {"Bloods", "red"},
+            {"IV Med", "orange"},
+            {"BGL", "yellow"},
+            {"Turn", "#43A6C6"},
+            {"Feed", "green"},
+            {"PCA", "#0E3B06"},
+            {"Documentation", "#32ED10"},
+            {"Other", "black"}
        };
     }
 
