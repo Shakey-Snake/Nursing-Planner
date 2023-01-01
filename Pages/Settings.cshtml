@@ -76,26 +76,29 @@
         {
             <tr>
                 <td>
-                    <input type="color" name="colour" value="@(task.Value)" style="display: inline">
-                    <div class="change" style="display: inline">
-                        <div id="displayDiv" style="display: inline">
-                            <p style="display: inline">@(task.Key)</p>
-                            <button id="change" style="display: inline" class="btn btn-primary">Change</button>
+                    <form method="post" asp-page-handler="ChangeTask" asp-route-oldKey="@task.Key">
+                        <div class="change" style="display: inline">
+                            <input id="inputColor" type="color" name="color" value="@(task.Value)" style="display: inline"
+                            disabled>
+
+                            <div id="displayDiv" style="display: inline">
+                                <p style="display: inline">@(task.Key)</p>
+                                <button type="button" id="change" style="display: inline"
+                                class="btn btn-primary">Change</button>
+                            </div>
+                            <div id="changeDiv" style="display: none">
+                                <input name="newKey" value="@(task.Key)">
+                                <button type="submit" class="btn btn-primary">Apply</button>
+                            </div>
                         </div>
-                        <div id="changeDiv" style="display:none">
-                            <form method="post" asp-page-handler="ChangeTask" asp-route-id="@task.Key">
-                                <input value="@(task.Key)" style="display: inline">
-                                <button class="btn btn-primary">Apply</button>
-                            </form>
-                        </div>
-                    </div>
+                    </form>
                 </td>
                 <td>
 
 
                 </td>
                 <td>
-                    <form method="post" asp-page-handler="DeleteTask" asp-route-id="@task.Key">
+                    <form method="post" asp-page-handler="DeleteTask" asp-route-key="@task.Key">
                         <button class="btn btn-danger">Delete</button>
                     </form>
                 </td>
@@ -113,15 +116,18 @@
         ChangeButton.addEventListener('click', function () {
             const display = divs[i].querySelector('#displayDiv');
             const change = divs[i].querySelector('#changeDiv');
-            console.log("switch")
+            const colorInput = divs[i].querySelector('#inputColor');
+            console.log(colorInput)
             if (display.style.display === 'inline') {
                 display.style.display = 'none';
                 change.style.display = 'inline';
+                colorInput.removeAttribute('disabled');
 
             } else {
                 display.style.display = 'inline';
                 change.style.display = 'none';
                 console.log("switch")
+                colorInput.setAttribute('disabled');
             }
         });
     }
