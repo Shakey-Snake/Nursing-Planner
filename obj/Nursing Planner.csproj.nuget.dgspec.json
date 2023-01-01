@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Reece\\Nursing Planner\\Nursing Planner.csproj": {}
+    "C:\\Users\\Reeece\\Nursing-Planner\\Nursing Planner.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Reece\\Nursing Planner\\Nursing Planner.csproj": {
+    "C:\\Users\\Reeece\\Nursing-Planner\\Nursing Planner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Reece\\Nursing Planner\\Nursing Planner.csproj",
+        "projectUniqueName": "C:\\Users\\Reeece\\Nursing-Planner\\Nursing Planner.csproj",
         "projectName": "Nursing Planner",
-        "projectPath": "C:\\Users\\Reece\\Nursing Planner\\Nursing Planner.csproj",
-        "packagesPath": "C:\\Users\\Reece\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Reece\\Nursing Planner\\obj\\",
+        "projectPath": "C:\\Users\\Reeece\\Nursing-Planner\\Nursing Planner.csproj",
+        "packagesPath": "C:\\Users\\Reeece\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Reeece\\Nursing-Planner\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Reece\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Reeece\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,14 +39,23 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Lib.Net.Http.WebPush": {
+              "target": "Package",
+              "version": "[3.2.1, )"
+            },
+            "WebPush": {
+              "target": "Package",
+              "version": "[1.0.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -58,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\Reeece\\AppData\\Roaming\\.dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

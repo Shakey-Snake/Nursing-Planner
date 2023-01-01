@@ -24,3 +24,36 @@ C:\Users\Reece\Nursing Planner\obj\Debug\net6.0\refint\Nursing Planner.dll
 C:\Users\Reece\Nursing Planner\obj\Debug\net6.0\Nursing Planner.pdb
 C:\Users\Reece\Nursing Planner\obj\Debug\net6.0\Nursing Planner.genruntimeconfig.cache
 C:\Users\Reece\Nursing Planner\obj\Debug\net6.0\ref\Nursing Planner.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\appsettings.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.staticwebassets.runtime.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.exe
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.deps.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.runtimeconfig.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\ref\Nursing Planner.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Nursing Planner.pdb
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.csproj.AssemblyReference.cache
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.AssemblyInfoInputs.cache
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.AssemblyInfo.cs
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.csproj.CoreCompileInputs.cache
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.RazorAssemblyInfo.cache
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.RazorAssemblyInfo.cs
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\scopedcss\bundle\Nursing Planner.styles.css
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\scopedcss\projectbundle\Nursing Planner.bundle.scp.css
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.dll
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\ref\Nursing Planner.dll
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.pdb
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.genruntimeconfig.cache
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\package-lock.json
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Lib.Net.Http.EncryptedContentEncoding.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Lib.Net.Http.WebPush.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\Reeece\Nursing-Planner\bin\Debug\net6.0\WebPush.dll
+C:\Users\Reeece\Nursing-Planner\obj\Debug\net6.0\Nursing Planner.csproj.CopyComplete

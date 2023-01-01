@@ -48,15 +48,26 @@ namespace Nursing_Planner.Pages
             PatientService.Delete(Id);
             return RedirectToAction("Get");
         }
-        public IActionResult OnPostDeleteTask(int Id)
+        public IActionResult OnPostDeleteTask(string key)
         {
-            PatientService.Delete(Id);
+            SettingsService.RemoveColor(key);
             return RedirectToAction("Get");
         }
 
-        public IActionResult OnPostChangeTask(int Id)
+        public IActionResult OnPostChangeTask(string oldKey, string color, string newKey)
         {
-            PatientService.Delete(Id);
+            //check if the color exist
+            if (!SettingsService.ColorExists(newKey))
+            {
+                SettingsService.ChangeColor(oldKey, newKey, color);
+                // remove all references to the changed color
+                SettingsService.RemoveColor(oldKey);
+            }
+            return RedirectToAction("Get");
+        }
+
+        public IActionResult OnPostAddTaskToList()
+        {
             return RedirectToAction("Get");
         }
     }

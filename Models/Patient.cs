@@ -11,7 +11,7 @@ public class Patient
     [Required]
     public string? RoomNumber { get; set; }
 
-    //key pair where first is time, second is the action
+    //key pair where first is time, second is a list of tasks the nurse might need to perform
     [Required]
     public Dictionary<DateTime, List<string>>? Task { get; set; }
 

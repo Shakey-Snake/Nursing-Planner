@@ -40,9 +40,17 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        <div id="notfications-enabled" style="display:none;">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <div id="no-support" style="display:none;">
+            Your browser does not support Push Notifications or you have blocked notifications
+        </div>
+        <div id="notifications-disabled" style="display:none;">
+            <p>notifications-disabled</p>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">

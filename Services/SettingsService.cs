@@ -34,11 +34,47 @@ public static class SettingsService
 
     public static DateTime GetEndTime() => settings._endTime;
 
-    public static void ChangeColour(string key, string newColour)
+    public static bool ColorExists(string key)
     {
         if (settings.tasks.ContainsKey(key))
         {
-            settings.tasks[key] = newColour;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static void ChangeColor(string oldKey, string newKey, string newColour)
+    {
+        if (settings.tasks.ContainsKey(oldKey))
+        {
+            settings.tasks.Add(newKey, newColour);
+            settings.tasks.Remove(oldKey);
+        }
+    }
+
+    public static void RemoveColor(string key)
+    {
+        if (settings.tasks.ContainsKey(key))
+        {
+            // remove from the tasks list
+            settings.tasks.Remove(key);
+            // go through patients and remove all references to the deleted task
+            foreach (var patient in PatientService.GetAll())
+            {
+                if (patient.Task != null)
+                {
+                    foreach (KeyValuePair<DateTime, List<string>> entry in patient.Task)
+                    {
+                        if (entry.Value.Contains(key))
+                        {
+                            entry.Value.Remove(key);
+                        }
+                    }
+                }
+
+            }
         }
     }
 

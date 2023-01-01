@@ -35,15 +35,15 @@ public class Settings
 
         tasks = new Dictionary<string, string>
         {
-            {"OBS", "blue"},
-            {"Bloods", "red"},
-            {"IV Med", "orange"},
-            {"BGL", "yellow"},
+            {"OBS", "#0000FF"},
+            {"Bloods", "#FF0000"},
+            {"IV Med", "#FFA500"},
+            {"BGL", "#FFFF00"},
             {"Turn", "#43A6C6"},
-            {"Feed", "green"},
+            {"Feed", "#00FF00"},
             {"PCA", "#0E3B06"},
             {"Documentation", "#32ED10"},
-            {"Other", "black"}
+            {"Other", "#000000"}
        };
     }
 
